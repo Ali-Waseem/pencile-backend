@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Question = require('./models/question');
 const app = express();
-const port =3000
+const port = process.env.PORT || 3000
 const dbUrl ='mongodb+srv://aliwaseembutt6:8GfJhr4GfHiKMUZ@pencil.uarf3.mongodb.net/pencil?retryWrites=true&w=majority'
 
 mongoose.connect(dbUrl).then((result) => {
