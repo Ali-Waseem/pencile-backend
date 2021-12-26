@@ -7,7 +7,7 @@ const dbUrl ='mongodb+srv://aliwaseembutt6:8GfJhr4GfHiKMUZ@pencil.uarf3.mongodb.
 
 mongoose.connect(dbUrl).then((result) => {
     console.log("Database Connection Successfull")
-    app.listen(port)
+    app.listen(port ,() => console.log(`Example app listening on port ${port}!`))
 }).catch((err) => {
     console.log("Database Connection Error")
 }) 
