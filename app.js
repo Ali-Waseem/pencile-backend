@@ -1,6 +1,8 @@
 const express = require('express');
+const lodash = require('lodash');
 const mongoose = require('mongoose');
 const Question = require('./models/question');
+const Topic = require('./models/topics');
 const app = express();
 const port = process.env.PORT || 3000
 const dbUrl ='mongodb+srv://aliwaseembutt6:8GfJhr4GfHiKMUZ@pencil.uarf3.mongodb.net/pencil?retryWrites=true&w=majority'
@@ -17,6 +19,7 @@ app.set('view engine', 'ejs');
         // Question.findOne( { _id: "MongoDB" } ).ancestors
         Question.find().then((result) => {
             res.send(result)
+            console.log(result)
         }).catch((err) =>{
             console.log("Error, No Data...")
         })
@@ -24,10 +27,12 @@ app.set('view engine', 'ejs');
     })
 
     app.get('/search' , (req, res) => {
-        Question.find({ _id: "61c85a2da1122189d1f52da0" }).then((result) => {
-            res.send(result)
+        let q =req.query.name
+        console.log("PARAMS",q)
+        Topic.find({$text:{$search:q}}).then(result => {
+            res.send(result);
         }).catch((err) =>{
-            console.log("Error, No Data...")
+            console.log(err)
         })
     })
 
