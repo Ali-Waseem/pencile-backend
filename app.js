@@ -1,5 +1,4 @@
 const express = require('express');
-const lodash = require('lodash');
 const mongoose = require('mongoose');
 const Question = require('./models/question');
 const Topic = require('./models/topics');
